@@ -33,6 +33,8 @@
             label1 = new Label();
             label2 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
+            disablenoti = new Button();
+            label3 = new Label();
             SuspendLayout();
             // 
             // Btcls
@@ -79,6 +81,33 @@
             // 
             timer1.Tick += timer1_Tick;
             // 
+            // disablenoti
+            // 
+            disablenoti.Anchor = AnchorStyles.Bottom;
+            disablenoti.BackColor = SystemColors.InactiveCaption;
+            disablenoti.Font = new Font("ＭＳ Ｐゴシック", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            disablenoti.Location = new Point(525, 311);
+            disablenoti.Name = "disablenoti";
+            disablenoti.Size = new Size(147, 56);
+            disablenoti.TabIndex = 3;
+            disablenoti.Text = "通知無効化";
+            disablenoti.UseVisualStyleBackColor = false;
+            disablenoti.Visible = false;
+            disablenoti.Click += disablenoti_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.FlatStyle = FlatStyle.Flat;
+            label3.Font = new Font("ＭＳ Ｐゴシック", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 128);
+            label3.ForeColor = SystemColors.ActiveCaptionText;
+            label3.Location = new Point(42, 210);
+            label3.Name = "label3";
+            label3.Size = new Size(612, 21);
+            label3.TabIndex = 4;
+            label3.Text = "通知を無効にする場合は、【通知無効化】ボタンを押してください。";
+            // 
             // noti
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -86,6 +115,8 @@
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(695, 389);
             ControlBox = false;
+            Controls.Add(label3);
+            Controls.Add(disablenoti);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(Btcls);
@@ -111,5 +142,7 @@
         private Label label1;
         private Label label2;
         private System.Windows.Forms.Timer timer1;
+        private Button disablenoti;
+        private Label label3;
     }
 }

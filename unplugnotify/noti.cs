@@ -5,44 +5,57 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using unplugnotify.Properties;
 using WMPLib;
 
 namespace unplugnotify
 {
     public partial class noti : Form
     {
-        bool soundstoped = false;
-        WindowsMediaPlayer player = new WindowsMediaPlayer();
+        private Form1 _parentform;
+
         
 
-        public noti()
+        bool soundstoped = false;
+        WindowsMediaPlayer player = new WindowsMediaPlayer();
+        SoundPlayer Scritical = new SoundPlayer(Resources.critical);
+        SoundPlayer touch = new SoundPlayer(Resources.touch);
+        SoundPlayer houchi = new SoundPlayer(Resources.houchi);
+
+
+        public noti(Form1 parentform)
         {
             InitializeComponent();
+            _parentform = parentform;
         }
 
         private async void Btcls_Click(object sender, EventArgs e)
         {
-          //  player.controls.stop();
-            
-            player.URL = @"c:\sound\POS\POS_touch.mp3";
-            
+            //  player.controls.stop();
+
+            //player.URL = @"c:\sound\POS\POS_touch.mp3";
+            touch.Play();
+
             if (soundstoped == false)
             {
-               await  Task.Delay(200);
-                player.settings.setMode("loop", true);
-                player.URL = @"c:\sound\POS\houchi.mp3";
+                await Task.Delay(200);
+                //player.settings.setMode("loop", true);
+                //player.URL = @"c:\sound\POS\houchi.mp3";
+                houchi.PlayLooping();
                 Btcls.Text = "確認";
+                disablenoti.Visible = true;
                 soundstoped = true;
             }
             else if (soundstoped == true)
             {
-                await Task.Delay(200 );
+                await Task.Delay(200);
                 soundstoped = false;
                 Close();
-                player.controls.stop();
+                // player.controls.stop();
             }
         }
 
@@ -50,8 +63,9 @@ namespace unplugnotify
         {
 
             timer1.Start();
-            player.settings.setMode("loop", true);
-            player.URL = @"c:\sound\POS\critical.mp3";
+            // player.settings.setMode("loop", true);
+            //player.URL = @"c:\sound\POS\critical.mp3";
+            Scritical.PlayLooping();
             Btcls.Focus();
         }
 
@@ -67,6 +81,13 @@ namespace unplugnotify
             }
             */
 
+        }
+
+        private void disablenoti_Click(object sender, EventArgs e)
+        {
+            _parentform.arrowedp = false;
+            touch.Play();
+            Close();
         }
     }
 }
