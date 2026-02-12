@@ -82,6 +82,24 @@ namespace unplugnotify.Properties {
         /// <summary>
         ///   System.IO.MemoryStream に類似した型 System.IO.UnmanagedMemoryStream のローカライズされたリソースを検索します。
         /// </summary>
+        public static System.IO.UnmanagedMemoryStream Error_conami {
+            get {
+                return ResourceManager.GetStream("Error-conami", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   System.IO.MemoryStream に類似した型 System.IO.UnmanagedMemoryStream のローカライズされたリソースを検索します。
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream Error_S1 {
+            get {
+                return ResourceManager.GetStream("Error_S1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   System.IO.MemoryStream に類似した型 System.IO.UnmanagedMemoryStream のローカライズされたリソースを検索します。
+        /// </summary>
         public static System.IO.UnmanagedMemoryStream houchi {
             get {
                 return ResourceManager.GetStream("houchi", resourceCulture);

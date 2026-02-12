@@ -33,6 +33,7 @@
             Chktim = new System.Windows.Forms.Timer(components);
             Btchk = new Label();
             debugtext = new Label();
+            ScreenChange = new CheckBox();
             SuspendLayout();
             // 
             // allowrdnoti
@@ -72,10 +73,22 @@
             debugtext.TabIndex = 2;
             debugtext.Text = "label1";
             // 
+            // ScreenChange
+            // 
+            ScreenChange.AutoSize = true;
+            ScreenChange.Location = new Point(357, 119);
+            ScreenChange.Name = "ScreenChange";
+            ScreenChange.Size = new Size(98, 19);
+            ScreenChange.TabIndex = 3;
+            ScreenChange.Text = "表示画面変更";
+            ScreenChange.UseVisualStyleBackColor = true;
+            ScreenChange.CheckedChanged += ScreenChange_CheckedChanged;
+            // 
             // Form1
             // 
             AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(457, 220);
+            Controls.Add(ScreenChange);
             Controls.Add(debugtext);
             Controls.Add(Btchk);
             Controls.Add(allowrdnoti);
@@ -95,5 +108,6 @@
         private System.Windows.Forms.Timer Chktim;
         private Label Btchk;
         private Label debugtext;
+        private CheckBox ScreenChange;
     }
 }

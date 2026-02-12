@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace unplugnotify
 {
- 
+
     public partial class Form1 : Form
     {
         bool iswindowopen = false;
@@ -13,16 +13,17 @@ namespace unplugnotify
         public Form1()
         {
             InitializeComponent();
-            
+
         }
 
         int debugint = 0;
 
 
 
+
         public void allowrdnoti_CheckedChanged(object sender, EventArgs e)
         {
-            if(allowrdnoti.Checked)
+            if (allowrdnoti.Checked)
             {
                 Chktim.Start();
                 Chktim.Enabled = true;
@@ -37,41 +38,51 @@ namespace unplugnotify
 
         private void Chktim_Tick(object sender, EventArgs e)
         {
-           
+
             PowerLineStatus powerLineStatus = SystemInformation.PowerStatus.PowerLineStatus;
 
             debugint++;
-            
-            
-            debugtext.Text =debugint.ToString();
+
+            noti form2 = new noti(this);
+            noti_g form3 = new noti_g(this);
+
+            debugtext.Text = debugint.ToString();
             switch (powerLineStatus)
             {
                 case PowerLineStatus.Online:
-                    Btchk.Text = "オンライン";
-                    arrowedp = true;    
-                    Btchk.ForeColor = Color.Aqua;
 
-                    
+
+                    Btchk.Text = "オンライン";
+                    arrowedp = true;
+                    Btchk.ForeColor = Color.Aqua;
+                    form2.Close();
+
 
                     break;
                 case PowerLineStatus.Offline:
                     if (allowrdnoti.Checked && Chktim.Enabled)
                     {
-                        noti form2 = new noti(this);
                         if (iswindowopen == false && arrowedp == true)
                         {
-                            form2.Show();
+                            if(ScreenChange.Checked)
+                            {
+                                form3.Show();
+                                iswindowopen = true;
+                                form3.FormClosed += (s, args) => { iswindowopen = false; };
+                            }
+                            else
+                                form2.Show();
                             iswindowopen = true;
                             form2.FormClosed += (s, args) => { iswindowopen = false; };
                         }
-                        
+
 
                     }
                     Btchk.Text = "オフライン";
                     Btchk.ForeColor = Color.Red;
                     break;
 
-                    default:
+                default:
                     Btchk.Text = "loading...";
                     break;
             }
@@ -81,7 +92,12 @@ namespace unplugnotify
         private void Form1_Load_1(object sender, EventArgs e)
         {
             arrowedp = true;
-             Chktim.Start();
+            Chktim.Start();
+        }
+
+        private void ScreenChange_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

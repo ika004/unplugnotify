@@ -70,16 +70,18 @@ namespace unplugnotify
         }
 
         private void timer1_Tick(object sender, EventArgs e)
-        {
-            /*
+        { 
+            
             PowerLineStatus powerLineStatus = SystemInformation.PowerStatus.PowerLineStatus;
             if (powerLineStatus == PowerLineStatus.Online)
             {
-                soundstoped = false;
+              //  soundstoped = false;
                 Close();
-                player.controls.stop();
+                Scritical.Stop();
+                timer1.Stop();
+                //player.controls.stop();
             }
-            */
+            
 
         }
 
